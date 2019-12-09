@@ -1,0 +1,58 @@
+= Ansible
+:icons: font
+
+image::https://www.ansible.com/hs-fs/hubfs/Official_Logos/Ansible-CircleA-BlackOutline.png[Ansible]
+
+Collection of Ansible custom facts.
+
+== Instructions
+
+Create the defined
+https://docs.ansible.com/ansible/latest/modules/setup_module.html[fact_path]
+directory, `/etc/ansible/facts.d` by default.
+Place any local ansible `.fact` files in that directory and the executable files
+in this directory will be run.  If the file is not executable it will be read.
+The fact file output must be formattable in JSON.
+
+== Repository rules
+
+Every `.fact` file must must include a description, have a `.j2` template
+and/or a `.yml` task example.
+
+== Ansible task example
+
+```shell
+---
+- name: create custom facts directory
+  become: 'yes'
+  become_method: sudo
+  file:
+    path: /etc/ansible/facts.d
+    recurse: true
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  tags:
+    - fact
+
+- name: systemd version fact
+  become: 'yes'
+  become_method: sudo
+  template:
+    src: etc/ansible/facts.d/systemd_version.fact
+    dest: /etc/ansible/facts.d/systemd_version.fact
+    backup: 'yes'
+    mode: 0755
+    owner: root
+    group: root
+  tags:
+    - systemd
+    - fact
+
+- name: update facts
+  setup: ~
+  tags:
+    - fact
+...
+```

@@ -1,0 +1,9 @@
+---
+- name: rng-tools package installation
+  become: 'yes'
+  become_method: sudo
+  package:
+    name: rng-tools
+    state: latest
+  when: ansible_local.cpuinfo_rdrand
+...
