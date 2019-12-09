@@ -1,9 +1,7 @@
 = Ansible
 :icons: font
 
-image::https://www.ansible.com/hs-fs/hubfs/Official_Logos/Ansible-CircleA-BlackOutline.png[Ansible]
-
-Collection of Ansible custom facts.
+A collection of https://www.ansible.com[Ansible] custom facts.
 
 == Instructions
 
