@@ -1,4 +1,4 @@
-= Ansible
+= Ansible custom facts
 :icons: font
 
 A collection of https://www.ansible.com[Ansible] custom facts.

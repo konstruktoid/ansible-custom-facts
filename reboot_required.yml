@@ -1,0 +1,8 @@
+---
+- name: reboot node
+  become: 'yes'
+  become_method: sudo
+  reboot:
+    pre_reboot_delay: "{{ 3600 | random(start=1) }}"
+  when: ansible_distribution == "Ubuntu" and ansible_local.reboot_required
+...
