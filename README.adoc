@@ -8,8 +8,10 @@ A collection of https://www.ansible.com[Ansible] custom facts.
 Create the defined
 https://docs.ansible.com/ansible/latest/modules/setup_module.html[fact_path]
 directory, `/etc/ansible/facts.d` by default.
+
 Place any local ansible `.fact` files in that directory and the executable files
 in this directory will be run.  If the file is not executable it will be read.
+
 The fact file output must be formattable in JSON.
 
 == Repository rules
