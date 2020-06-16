@@ -5,5 +5,5 @@
   package:
     name: rng-tools
     state: latest
-  when: ansible_local.cpuinfo_rdrand
+  when: ansible_local.cpuinfo.rdrand
 ...

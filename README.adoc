@@ -36,18 +36,18 @@ and/or a `.yml` task example.
   tags:
     - fact
 
-- name: systemd version fact
+- name: cpuinfo rdrand fact
   become: 'yes'
-  become_method: sudo
   template:
-    src: etc/ansible/facts.d/systemd_version.fact
-    dest: /etc/ansible/facts.d/systemd_version.fact
+    src: etc/ansible/facts.d/cpuinfo.fact
+    dest: /etc/ansible/facts.d/cpuinfo.fact
     backup: 'yes'
     mode: 0755
     owner: root
     group: root
   tags:
-    - systemd
+    - cpuinfo
+    - rdrand
     - fact
 
 - name: update facts

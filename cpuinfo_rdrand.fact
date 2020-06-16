@@ -1,8 +1,0 @@
-#!/bin/sh
-# Return true if the CPU supports the rdrand flag
-
-if grep -sqo rdrand /proc/cpuinfo; then
-  echo "{ \"cpuinfo_rdrand\" : \"true\"}"
-else
-  echo "{ \"cpuinfo_rdrand\" : \"false\"}"
-fi

@@ -1,0 +1,53 @@
+---
+- hosts: localhost
+  tasks:
+    - name: "variable debug testing"
+      debug:
+        var: "{{ item }}"
+      with_items:
+        - ansible_local.cpuinfo.rdrand
+        - ansible_local.reboot.required
+        - ansible_local.systemd.version
+
+    - name: "cpuinfo_rdrand handling, true"
+      debug:
+        msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}, true"
+      when: ansible_local.cpuinfo.rdrand
+
+    - name: "cpuinfo_rdrand handling, false"
+      debug:
+        msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}, false"
+      when: not ansible_local.cpuinfo.rdrand
+
+    - name: "cpuinfo_rdrand handling, info"
+      debug:
+        msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}"
+
+    - name: "reboot_required handling, true"
+      debug:
+        msg: "reboot_required is {{ ansible_local.reboot.required }}, true"
+      when: ansible_local.reboot.required
+
+    - name: "reboot_required handling, false"
+      debug:
+        msg: "reboot_required is {{ ansible_local.reboot.required }}, false"
+      when: not ansible_local.reboot.required
+
+    - name: "reboot_required handling, info"
+      debug:
+        msg: "reboot_required is {{ ansible_local.reboot.required }}"
+
+    - name: "systemd_version handling, <= 100"
+      debug:
+        msg: "systemd version is {{ ansible_local.systemd.version }}, <= 100"
+      when: ansible_local.systemd.version <= 100
+
+    - name: "systemd_version handling, >= 100"
+      debug:
+        msg: "systemd version is {{ ansible_local.systemd.version }}, >= 100"
+      when: ansible_local.systemd.version >= 100
+
+    - name: "systemd_version handling, info"
+      debug:
+        msg: "systemd version is {{ ansible_local.systemd.version }}"
+...

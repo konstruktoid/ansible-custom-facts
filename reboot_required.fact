@@ -1,7 +1,0 @@
-#!/bin/sh
-# Return true if the /var/run/reboot-required file exists
-if [ -f /var/run/reboot-required ]; then
-  echo "{ \"reboot_required\" : \"true\"}"
-else
-  echo "{ \"reboot_required\" : \"false\"}"
-fi
