@@ -19,6 +19,16 @@
         msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}, false"
       when: not ansible_local.cpuinfo.rdrand
 
+    - name: "ansible_local['cpuinfo']['rdrand'], true"
+      debug:
+        msg: "cpuinfo_rdrand is {{ ansible_local['cpuinfo']['rdrand'] }}, true"
+      when: ansible_local['cpuinfo']['rdrand']
+
+    - name: "ansible_local['cpuinfo']['rdrand'], false"
+      debug:
+        msg: "cpuinfo_rdrand is {{ ansible_local['cpuinfo']['rdrand'] }}, false"
+      when: not ansible_local['cpuinfo']['rdrand']
+
     - name: "cpuinfo_rdrand handling, info"
       debug:
         msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}"
