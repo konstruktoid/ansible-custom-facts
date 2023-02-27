@@ -24,26 +24,26 @@ and/or a `.yml` task example.
 
 ```shell
 ---
-- name: create custom facts directory
+- name: Create custom facts directory
   become: 'yes'
   become_method: sudo
   file:
     path: /etc/ansible/facts.d
     recurse: true
     state: directory
-    mode: 0755
+    mode: "0755"
     owner: root
     group: root
   tags:
     - fact
 
-- name: cpuinfo rdrand fact
+- name: Cpuinfo rdrand fact
   become: 'yes'
   template:
     src: etc/ansible/facts.d/cpuinfo.fact
     dest: /etc/ansible/facts.d/cpuinfo.fact
     backup: 'yes'
-    mode: 0755
+    mode: "0755"
     owner: root
     group: root
   tags:
@@ -51,7 +51,7 @@ and/or a `.yml` task example.
     - rdrand
     - fact
 
-- name: update facts
+- name: Update facts
   setup: ~
   tags:
     - fact

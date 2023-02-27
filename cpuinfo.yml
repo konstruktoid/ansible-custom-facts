@@ -1,7 +1,6 @@
 ---
-- name: rng-tools package installation
-  become: 'yes'
-  become_method: sudo
+- name: Install the rng-tools package
+  become: true
   package:
     name: rng-tools
     state: latest

@@ -1,63 +1,59 @@
 ---
-- hosts: localhost
+- name: Variable debugging
+  hosts: localhost
   tasks:
-    - name: "variable debug testing"
-      debug:
+    - name: Variable debug testing"
+      ansible.builtin.debug:
         var: "{{ item }}"
       with_items:
         - ansible_local.cpuinfo.rdrand
         - ansible_local.reboot.required
         - ansible_local.systemd.version
 
-    - name: "cpuinfo_rdrand handling, true"
-      debug:
+    - name: Cpuinfo_rdrand handling, true
+      ansible.builtin.debug:
         msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}, true"
       when: ansible_local.cpuinfo.rdrand
 
-    - name: "cpuinfo_rdrand handling, false"
-      debug:
+    - name: Cpuinfo_rdrand handling, false
+      ansible.builtin.debug:
         msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}, false"
       when: not ansible_local.cpuinfo.rdrand
 
-    - name: "ansible_local['cpuinfo']['rdrand'], true"
-      debug:
+    - name: Ansible_local['cpuinfo']['rdrand'], true
+      ansible.builtin.debug:
         msg: "cpuinfo_rdrand is {{ ansible_local['cpuinfo']['rdrand'] }}, true"
       when: ansible_local['cpuinfo']['rdrand']
 
-    - name: "ansible_local['cpuinfo']['rdrand'], false"
-      debug:
+    - name: Ansible_local['cpuinfo']['rdrand'], false
+      ansible.builtin.debug:
         msg: "cpuinfo_rdrand is {{ ansible_local['cpuinfo']['rdrand'] }}, false"
       when: not ansible_local['cpuinfo']['rdrand']
 
-    - name: "cpuinfo_rdrand handling, info"
-      debug:
+    - name: Cpuinfo_rdrand handling, info"
+      ansible.builtin.debug:
         msg: "cpuinfo_rdrand is {{ ansible_local.cpuinfo.rdrand }}"
 
-    - name: "reboot_required handling, true"
-      debug:
-        msg: "reboot_required is {{ ansible_local.reboot.required }}, true"
-      when: ansible_local.reboot.required
+    - name: Stat /var/run/reboot-required
+      ansible.builtin.stat:
+        path: /var/run/reboot-required
+      register: stat_reboot_required
 
-    - name: "reboot_required handling, false"
-      debug:
-        msg: "reboot_required is {{ ansible_local.reboot.required }}, false"
-      when: not ansible_local.reboot.required
+    - name: Reboot required
+      ansible.builtin.debug:
+        msg: "reboot_required is {{ stat_reboot_required.stat.exists }}"
 
-    - name: "reboot_required handling, info"
-      debug:
-        msg: "reboot_required is {{ ansible_local.reboot.required }}"
-
-    - name: "systemd_version handling, <= 100"
-      debug:
+    - name: Systemd_version handling, <= 100
+      ansible.builtin.debug:
         msg: "systemd version is {{ ansible_local.systemd.version }}, <= 100"
       when: ansible_local.systemd.version <= 100
 
-    - name: "systemd_version handling, >= 100"
-      debug:
+    - name: Systemd_version handling, >= 100
+      ansible.builtin.debug:
         msg: "systemd version is {{ ansible_local.systemd.version }}, >= 100"
       when: ansible_local.systemd.version >= 100
 
-    - name: "systemd_version handling, info"
-      debug:
+    - name: Systemd_version handling, info
+      ansible.builtin.debug:
         msg: "systemd version is {{ ansible_local.systemd.version }}"
 ...
