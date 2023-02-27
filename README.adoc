@@ -25,7 +25,7 @@ and/or a `.yml` task example.
 ```shell
 ---
 - name: Create custom facts directory
-  become: 'yes'
+  become: true
   become_method: sudo
   file:
     path: /etc/ansible/facts.d
@@ -38,7 +38,7 @@ and/or a `.yml` task example.
     - fact
 
 - name: Cpuinfo rdrand fact
-  become: 'yes'
+  become: true
   template:
     src: etc/ansible/facts.d/cpuinfo.fact
     dest: /etc/ansible/facts.d/cpuinfo.fact
