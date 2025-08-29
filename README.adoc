@@ -1,6 +1,15 @@
 = Ansible custom facts
 :icons: font
 
+*As of Ansible 2.18, the custom facts in this repository is no longer needed.*
+
+```yaml
+- "'rdrand' in ansible_facts.flags"
+- ansible_facts.systemd.version | int >= 252
+```
+
+== Overview
+
 A collection of https://www.ansible.com[Ansible] custom, or
 https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#local-facts-facts-d[local], facts.
 
